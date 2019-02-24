@@ -58,4 +58,10 @@ public class StringCalculatorTest {
         }
     }
     
+    @Test
+    public void NumbersGreaterThan1000NotIncludedInSum() {
+        StringCalculator sut = new StringCalculator();
+        assertEquals(1009, sut.Add("3,1000,1001,6,1234"));
+    }
+    
 }

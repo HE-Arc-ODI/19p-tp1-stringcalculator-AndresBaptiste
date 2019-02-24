@@ -37,8 +37,9 @@ public class StringCalculator {
                     int num = Integer.parseInt(part);
                     if (num < 0) {
                         negatives.add(part);
+                    } else if (num <= 1000) {
+                        total += num;
                     }
-                total += num;
                 }
             }
             if (!negatives.isEmpty()) {
