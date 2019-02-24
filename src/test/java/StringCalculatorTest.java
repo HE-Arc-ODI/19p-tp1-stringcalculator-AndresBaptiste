@@ -1,6 +1,7 @@
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
 /*
@@ -32,5 +33,12 @@ public class StringCalculatorTest {
         StringCalculator sut = new StringCalculator();
         assertEquals(7, sut.Add("2,5"));
     }
+    
+    @Test
+    public void supportNewLineAsSeparator() {
+        StringCalculator sut = new StringCalculator();
+        assertEquals(6, sut.Add("1\n2,3"));
+    }
+    
     
 }
