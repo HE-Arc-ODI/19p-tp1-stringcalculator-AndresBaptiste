@@ -46,5 +46,16 @@ public class StringCalculatorTest {
         assertEquals(10, sut.Add(";\n1;2;3;4"));
     }
     
+    @Test
+    public void negativeNotSupported() {
+        StringCalculator sut = new StringCalculator();
+        try {
+            sut.Add("-1,4");
+            fail("exception should have been thrown");
+        }
+        catch (IllegalArgumentException e) {
+            assertEquals("negatives not allowed -1", e.getMessage());
+        }
+    }
     
 }

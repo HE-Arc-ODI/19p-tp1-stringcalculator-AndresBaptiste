@@ -18,6 +18,7 @@ public class StringCalculator {
         public int Add(String number) {
             
             int total = 0;
+            List<String> negatives = new ArrayList<String>();
 
             if (number == null || number.isEmpty()) {
                 return 0;
@@ -34,10 +35,16 @@ public class StringCalculator {
                     --skipFirstLines;
                 } else {
                     int num = Integer.parseInt(part);
-                
+                    if (num < 0) {
+                        negatives.add(part);
+                    }
                 total += num;
                 }
-            }    
+            }
+            if (!negatives.isEmpty()) {
+                throw new IllegalArgumentException(
+                    "negatives not allowed " + String.join(";", negatives));
+            }
         return total;
         }
         
