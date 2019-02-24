@@ -40,5 +40,11 @@ public class StringCalculatorTest {
         assertEquals(6, sut.Add("1\n2,3"));
     }
     
+    @Test
+    public void supportForCustomDelimiter() {
+        StringCalculator sut = new StringCalculator();
+        assertEquals(10, sut.Add(";\n1;2;3;4"));
+    }
+    
     
 }

@@ -22,14 +22,44 @@ public class StringCalculator {
             if (number == null || number.isEmpty()) {
                 return 0;
             }
-           
             
-            if  (number != null) {
-                    String[] parts = number.split(",|\n");
-                    for (String part : parts){
-                        total = total + parseInt(part);
-                    }
-            }
-            return total;
+            char customDelimiter = getCustomDelimiter(number.split("\n")[0]); 
+            
+            String[] chuncks = (customDelimiter == ',') ? number.split(",|\n") : number.split("\n|" + customDelimiter);
+        
+            int skipFirstLines = (customDelimiter == ',') ? 0 : 2;
+            
+            for (String part : chuncks) {
+                if (skipFirstLines > 0) {
+                    --skipFirstLines;
+                } else {
+                    int num = Integer.parseInt(part);
+                
+                total += num;
+                }
+            }    
+        return total;
         }
+        
+        private boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+        }
+        
+        private char getCustomDelimiter(String line) {
+        if (line == null || line.isEmpty()) {
+            return ',';
+        }
+        if (isNumeric(line)) {
+            return ',';
+        }
+        if (line.length() == 1) {
+            return line.charAt(0);
+        }
+        return ',';
+    }
 }
